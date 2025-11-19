@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stat Generator 2024 - Point Buy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Stat Generator 2024</h1>
+        <p class="subtitle">
+            A lightweight point-buy calculator for TTRPG character creation.
+        </p>
+
+        <table id="point-buy-table">
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Ability Score</th>
+                    <th>Background Bonus</th>
+                    <th>Total Score</th>
+                    <th>Ability Modifier</th>
+                    <th>Point Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- We’ll define 6 rows, one per ability -->
+                <tr data-ability="Strength">
+                    <td class="ability-name">Strength</td>
+                    <td class="ability-score">
+                        <button class="score-btn minus">-</button>
+                        <input type="number" class="score-input" value="8" min="8" max="15" readonly>
+                        <button class="score-btn plus">+</button>
+                    </td>
+                    <td>
+                        <input type="number" class="background-input" value="0" step="1">
+                    </td>
+                    <td class="total-score">8</td>
+                    <td class="modifier">-1</td>
+                    <td class="point-cost">0</td>
+                </tr>
+                <tr data-ability="Dexterity">
+                    <td class="ability-name">Dexterity</td>
+                    <td class="ability-score">
+                        <button class="score-btn minus">-</button>
+                        <input type="number" class="score-input" value="8" min="8" max="15" readonly>
+                        <button class="score-btn plus">+</button>
+                    </td>
+                    <td>
+                        <input type="number" class="background-input" value="0" step="1">
+                    </td>
+                    <td class="total-score">8</td>
+                    <td class="modifier">-1</td>
+                    <td class="point-cost">0</td>
+                </tr>
+                <tr data-ability="Constitution">
+                    <td class="ability-name">Constitution</td>
+                    <td class="ability-score">
+                        <button class="score-btn minus">-</button>
+                        <input type="number" class="score-input" value="8" min="8" max="15" readonly>
+                        <button class="score-btn plus">+</button>
+                    </td>
+                    <td>
+                        <input type="number" class="background-input" value="0" step="1">
+                    </td>
+                    <td class="total-score">8</td>
+                    <td class="modifier">-1</td>
+                    <td class="point-cost">0</td>
+                </tr>
+                <tr data-ability="Intelligence">
+                    <td class="ability-name">Intelligence</td>
+                    <td class="ability-score">
+                        <button class="score-btn minus">-</button>
+                        <input type="number" class="score-input" value="8" min="8" max="15" readonly>
+                        <button class="score-btn plus">+</button>
+                    </td>
+                    <td>
+                        <input type="number" class="background-input" value="0" step="1">
+                    </td>
+                    <td class="total-score">8</td>
+                    <td class="modifier">-1</td>
+                    <td class="point-cost">0</td>
+                </tr>
+                <tr data-ability="Wisdom">
+                    <td class="ability-name">Wisdom</td>
+                    <td class="ability-score">
+                        <button class="score-btn minus">-</button>
+                        <input type="number" class="score-input" value="8" min="8" max="15" readonly>
+                        <button class="score-btn plus">+</button>
+                    </td>
+                    <td>
+                        <input type="number" class="background-input" value="0" step="1">
+                    </td>
+                    <td class="total-score">8</td>
+                    <td class="modifier">-1</td>
+                    <td class="point-cost">0</td>
+                </tr>
+                <tr data-ability="Charisma">
+                    <td class="ability-name">Charisma</td>
+                    <td class="ability-score">
+                        <button class="score-btn minus">-</button>
+                        <input type="number" class="score-input" value="8" min="8" max="15" readonly>
+                        <button class="score-btn plus">+</button>
+                    </td>
+                    <td>
+                        <input type="number" class="background-input" value="0" step="1">
+                    </td>
+                    <td class="total-score">8</td>
+                    <td class="modifier">-1</td>
+                    <td class="point-cost">0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="summary-row">
+            <span id="points-used">Points used: 0 / 27</span>
+            <span id="points-remaining">Points remaining: 27</span>
+        </div>
+
+        <div class="controls">
+            <button id="reset-button">Reset</button>
+            <span id="warning" class="warning"></span>
+        </div>
+
+        <footer>
+            <p>Inspired by 5e point-buy rules. Not affiliated with any publisher.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
