@@ -92,10 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById("point-buy-table");
     const resetButton = document.getElementById("reset-button");
 
-    // Attach listeners for + / - buttons
+    // Attach listeners for +/- buttons (ability scores + background)
     table.addEventListener("click", (event) => {
         const target = event.target;
 
+        // Ability score +/- buttons
         if (target.classList.contains("score-btn")) {
             const row = target.closest("tr");
             const input = row.querySelector(".score-input");
@@ -112,10 +113,31 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             input.value = current;
             recalculateAll();
+
+        // Background bonus +/- buttons
+        } else if (target.classList.contains("background-btn")) {
+            const row = target.closest("tr");
+            const input = row.querySelector(".background-input");
+            let current = parseInt(input.value || "0", 10);
+
+            const min = parseInt(input.getAttribute("min") || "-99", 10);
+            const max = parseInt(input.getAttribute("max") || "99", 10);
+
+            if (target.classList.contains("minus")) {
+                if (current > min) {
+                    current -= 1;
+                }
+            } else if (target.classList.contains("plus")) {
+                if (current < max) {
+                    current += 1;
+                }
+            }
+            input.value = current;
+            recalculateAll();
         }
     });
 
-    // Listen for changes in background bonuses
+    // Listen for manual changes in background bonuses
     const bgInputs = document.querySelectorAll(".background-input");
     bgInputs.forEach(input => {
         input.addEventListener("input", () => {

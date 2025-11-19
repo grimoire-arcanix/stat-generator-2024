@@ -31,6 +31,17 @@ h1 {
     margin-bottom: 1.5rem;
 }
 
+/* Hide default number input arrows (spinners) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -60,7 +71,9 @@ tbody tr:nth-child(odd) {
     font-weight: 600;
 }
 
-.score-btn {
+/* Buttons for ability and background +/- */
+.score-btn,
+.background-btn {
     border: none;
     padding: 0.25rem 0.5rem;
     margin: 0 0.25rem;
@@ -70,7 +83,8 @@ tbody tr:nth-child(odd) {
     color: #e5e7eb;
 }
 
-.score-btn:hover {
+.score-btn:hover,
+.background-btn:hover {
     background: #6b7280;
 }
 
