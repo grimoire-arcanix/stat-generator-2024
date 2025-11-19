@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #111827;
+    color: #e5e7eb;
+}
+
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #1f2937;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #9ca3af;
+    margin-bottom: 1.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+thead {
+    background: #111827;
+}
+
+th, td {
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    border-bottom: 1px solid #374151;
+}
+
+tbody tr:nth-child(even) {
+    background: #111827;
+}
+
+tbody tr:nth-child(odd) {
+    background: #0f172a;
+}
+
+.ability-name {
+    text-align: left;
+    font-weight: 600;
+}
+
+.score-btn {
+    border: none;
+    padding: 0.25rem 0.5rem;
+    margin: 0 0.25rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    background: #4b5563;
+    color: #e5e7eb;
+}
+
+.score-btn:hover {
+    background: #6b7280;
+}
+
+.score-input {
+    width: 3rem;
+    text-align: center;
+    border: none;
+    background: transparent;
+    color: #e5e7eb;
+    font-weight: 600;
+}
+
+.background-input {
+    width: 3rem;
+    text-align: center;
+    border-radius: 0.25rem;
+    border: 1px solid #4b5563;
+    background: #111827;
+    color: #e5e7eb;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#reset-button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    background: #ef4444;
+    color: white;
+    font-weight: 600;
+}
+
+#reset-button:hover {
+    background: #b91c1c;
+}
+
+.warning {
+    color: #f97316;
+    font-size: 0.9rem;
+}
+
+footer {
+    margin-top: 1.25rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
