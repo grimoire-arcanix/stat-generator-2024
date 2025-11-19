@@ -40,9 +40,19 @@ function updateRow(row) {
     const costCell = row.querySelector(".point-cost");
 
     const baseScore = parseInt(scoreInput.value, 10);
-    const backgroundBonus = parseInt(bgInput.value || "0", 10);
 
-    const totalScore = baseScore + backgroundBonus;
+    // Clamp background bonus between its min/max (0–2)
+    const rawBg = parseInt(bgInput.value || "0", 10);
+    const minBg = parseInt(bgInput.getAttribute("min") || "0", 10);
+    const maxBg = parseInt(bgInput.getAttribute("max") || "2", 10);
+    const clampedBg = Math.min(maxBg, Math.max(minBg, isNaN(rawBg) ? 0 : rawBg));
+
+    // If user typed an out-of-range value, snap it back
+    if (clampedBg !== rawBg && !isNaN(rawBg)) {
+        bgInput.value = clampedBg;
+    }
+
+    const totalScore = baseScore + clampedBg;
     const modifier = abilityModifier(totalScore);
     const cost = pointCost(baseScore);
 
@@ -120,8 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const input = row.querySelector(".background-input");
             let current = parseInt(input.value || "0", 10);
 
-            const min = parseInt(input.getAttribute("min") || "-99", 10);
-            const max = parseInt(input.getAttribute("max") || "99", 10);
+            const min = parseInt(input.getAttribute("min") || "0", 10);
+            const max = parseInt(input.getAttribute("max") || "2", 10);
 
             if (target.classList.contains("minus")) {
                 if (current > min) {
