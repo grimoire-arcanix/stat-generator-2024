@@ -31,6 +31,22 @@ h1 {
     margin-bottom: 1.5rem;
 }
 
+/* Background dropdown */
+.background-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#background-select {
+    background: #111827;
+    color: #e5e7eb;
+    border: 1px solid #4b5563;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+}
+
 /* Hide default number input arrows (spinners) */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -104,6 +120,11 @@ tbody tr:nth-child(odd) {
     border: 1px solid #4b5563;
     background: #111827;
     color: #e5e7eb;
+}
+
+/* Grey out background cells that are disabled for this background */
+.background-score.background-disabled {
+    opacity: 0.4;
 }
 
 .summary-row {
