@@ -20,67 +20,67 @@ const POINT_BUY_COSTS = {
 // Background → which abilities can receive bonuses
 const BACKGROUNDS = {
     acolyte: {
-        label: "Acolyte Origin (Int/Wis/Cha)",
+        label: "Acolyte (Int/Wis/Cha)",
         allowedAbilities: ["Intelligence", "Wisdom", "Charisma"]
     },
     artisan: {
-        label: "Artisan Origin (Str/Dex/Int)",
+        label: "Artisan (Str/Dex/Int)",
         allowedAbilities: ["Strength", "Dexterity", "Intelligence"]
     },
     charlatan: {
-        label: "Charlatan Origin (Dex/Con/Cha)",
+        label: "Charlatan (Dex/Con/Cha)",
         allowedAbilities: ["Dexterity", "Constitution", "Charisma"]
     },
     criminal: {
-        label: "Criminal Origin (Dex/Con/Int)",
+        label: "Criminal (Dex/Con/Int)",
         allowedAbilities: ["Dexterity", "Constitution", "Intelligence"]
     },
     entertainer: {
-        label: "Entertainer Origin (Str/Dex/Cha)",
+        label: "Entertainer (Str/Dex/Cha)",
         allowedAbilities: ["Strength", "Dexterity", "Charisma"]
     },
     farmer: {
-        label: "Farmer Origin (Str/Con/Wis)",
+        label: "Farmer (Str/Con/Wis)",
         allowedAbilities: ["Strength", "Constitution", "Wisdom"]
     },
     guard: {
-        label: "Guard Origin (Str/Int/Wis)",
+        label: "Guard (Str/Int/Wis)",
         allowedAbilities: ["Strength", "Intelligence", "Wisdom"]
     },
     guide: {
-        label: "Guide Origin (Dex/Con/Wis)",
+        label: "Guide (Dex/Con/Wis)",
         allowedAbilities: ["Dexterity", "Constitution", "Wisdom"]
     },
     hermit: {
-        label: "Hermit Origin (Con/Wis/Cha)",
+        label: "Hermit (Con/Wis/Cha)",
         allowedAbilities: ["Constitution", "Wisdom", "Charisma"]
     },
     merchant: {
-        label: "Merchant Origin (Con/Int/Cha)",
+        label: "Merchant (Con/Int/Cha)",
         allowedAbilities: ["Constitution", "Intelligence", "Charisma"]
     },
     noble: {
-        label: "Noble Origin (Str/Int/Cha)",
+        label: "Noble (Str/Int/Cha)",
         allowedAbilities: ["Strength", "Intelligence", "Charisma"]
     },
     sage: {
-        label: "Sage Origin (Con/Int/Wis)",
+        label: "Sage (Con/Int/Wis)",
         allowedAbilities: ["Constitution", "Intelligence", "Wisdom"]
     },
     sailor: {
-        label: "Sailor Origin (Str/Dex/Wis)",
+        label: "Sailor (Str/Dex/Wis)",
         allowedAbilities: ["Strength", "Dexterity", "Wisdom"]
     },
     scribe: {
-        label: "Scribe Origin (Dex/Int/Wis)",
+        label: "Scribe (Dex/Int/Wis)",
         allowedAbilities: ["Dexterity", "Intelligence", "Wisdom"]
     },
     soldier: {
-        label: "Soldier Origin (Str/Dex/Con)",
+        label: "Soldier (Str/Dex/Con)",
         allowedAbilities: ["Strength", "Dexterity", "Constitution"]
     },
     wayfarer: {
-        label: "Wayfarer Origin (Dex/Wis/Cha)",
+        label: "Wayfarer (Dex/Wis/Cha)",
         allowedAbilities: ["Dexterity", "Wisdom", "Charisma"]
     }
 };
@@ -174,13 +174,11 @@ function recalculateAll() {
         bgPointsSpan.textContent = `Background points used: ${bgTotal} / ${MAX_BACKGROUND_POINTS}`;
     }
 
-    // Ability-point warnings
     if (totalPoints > MAX_POINTS) {
         warningSpan.textContent = "You have spent more than 27 points!";
     } else if (totalPoints === MAX_POINTS) {
         warningSpan.textContent = "You have used all 27 points.";
     } else {
-        // No special background warning here; keep it simple.
         warningSpan.textContent = "";
     }
 }
@@ -191,11 +189,7 @@ function resetAll() {
         const scoreInput = row.querySelector(".score-input");
         const bgInput = row.querySelector(".background-input");
         scoreInput.value = MIN_SCORE;
-        if (!bgInput.disabled) {
-            bgInput.value = 0;
-        } else {
-            bgInput.value = 0;
-        }
+        bgInput.value = 0;
     });
     recalculateAll();
 }
@@ -210,7 +204,6 @@ function applyBackground(backgroundId) {
         const bgInput = row.querySelector(".background-input");
         const bgButtons = row.querySelectorAll(".background-btn");
 
-        // Always reset bonuses when switching backgrounds
         bgInput.value = 0;
 
         if (config && config.allowedAbilities.includes(abilityName)) {
@@ -236,7 +229,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const resetButton = document.getElementById("reset-button");
     const bgSelect = document.getElementById("background-select");
 
-    // Apply initial background (default selected option)
     if (bgSelect) {
         applyBackground(bgSelect.value);
         bgSelect.addEventListener("change", () => {
@@ -246,11 +238,9 @@ document.addEventListener("DOMContentLoaded", () => {
         recalculateAll();
     }
 
-    // Attach listeners for +/- buttons (ability scores + background)
     table.addEventListener("click", (event) => {
         const target = event.target;
 
-        // Ability score +/- buttons
         if (target.classList.contains("score-btn")) {
             const row = target.closest("tr");
             const input = row.querySelector(".score-input");
@@ -268,7 +258,6 @@ document.addEventListener("DOMContentLoaded", () => {
             input.value = current;
             recalculateAll();
 
-        // Background bonus +/- buttons
         } else if (target.classList.contains("background-btn")) {
             const row = target.closest("tr");
             const input = row.querySelector(".background-input");
@@ -288,7 +277,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } else if (target.classList.contains("plus")) {
                 if (current < max && totalBefore < MAX_BACKGROUND_POINTS) {
-                    // Ensure we don't exceed global max of 3
                     if (totalBefore + 1 <= MAX_BACKGROUND_POINTS) {
                         current += 1;
                     }
@@ -300,7 +288,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Listen for manual changes in background bonuses (typing)
     const bgInputs = document.querySelectorAll(".background-input");
     bgInputs.forEach(input => {
         input.addEventListener("input", () => {
@@ -314,7 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (val > 2) val = 2;
             input.value = val;
 
-            // Enforce global cap of 3 background points
             let total = getTotalBackgroundPoints();
             if (total > MAX_BACKGROUND_POINTS) {
                 const excess = total - MAX_BACKGROUND_POINTS;
@@ -326,7 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Reset button
     resetButton.addEventListener("click", () => {
         resetAll();
     });
