@@ -134,10 +134,30 @@ tbody tr:nth-child(odd) {
     font-weight: 500;
 }
 
+/* Tooltip block at bottom */
+.background-tooltips {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #374151;
+}
+
+.background-tooltips h2 {
+    margin: 0.5rem 0 0.25rem;
+    font-size: 1rem;
+}
+
+.background-tooltips p {
+    margin: 0 0 0.5rem;
+    color: #d1d5db;
+    white-space: pre-line; /* preserve newlines, but collapse repeated spaces */
+    line-height: 1.3;      /* slightly tighter spacing */
+}
+
 .controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0.5rem;
 }
 
 #reset-button {
